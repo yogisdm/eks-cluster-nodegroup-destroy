@@ -1,10 +1,10 @@
 output "eks_role" {
   description = "The ID of the VPC"
-  value       = module.eks-iam-role
+  value       = module.aws_iam_role.eks-iam-role.name
 }
 
 output "workernodes_role" {
   description = "The ID of the VPC"
-  value       = module.workernodes
+  value       = module.aws_iam_role.workernodes.name
 }
 

@@ -20,17 +20,22 @@ data "aws_subnet_ids" "public-subnets" {
   }
 }
 
+data "aws_iam_role" "example" {
+  name = "sandboxcluster-eks-iam-role"
+}
+
+
 
 resource "aws_eks_cluster" "eks_sandbox_cluster" {
 count = "${length(var.public-subnet-cidr)}"
  name = var.eks-cluster-name
- role_arn = aws_iam_role.eks-iam-role.arn
+ role_arn = data.aws_iam_role.example.arn
 
 
  vpc_config {
   endpoint_private_access = false
   endpoint_public_access  = true
-  subnet_ids = "${element(data.aws_subnet.public-subnets.*.id, count.index)}"
+  subnet_ids = "${element(data.aws_subnet_ids.public-subnets.*.id, count.index)}"
  }
 
 // depends_on = [

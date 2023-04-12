@@ -1,26 +1,15 @@
-output "vpc_id" {
+output "eks_nodegroup_role" {
   description = "The ID of the VPC"
-  value       = module.vpc_creation
+  value       = module.eks_nodegroup_role
 }
 
-output "subnets" {
+output "eks_cluster_creation" {
   description = "Subnets created with CIDR blocks"
-  value = module.subnet_creation
+  value = module.eks_cluster_creation
 
 }
 
-output "internet_gateway" {
+output "nodegroup_creation" {
   description = "internet gateway arn"
-  value = module.internet_gateway.internet-gateway-yogi-devops
-}
-
-output "route_creation" {
-description = "route creation output"
-value = module.route_creation
-}
-
-output "iam_instance_profile" {
-description = "instance profile output "
-
-value = module.iam_instance_profile
+  value = module.nodegroup_creation
 }
