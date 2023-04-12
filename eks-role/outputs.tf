@@ -1,10 +1,10 @@
 output "eks_role" {
-  description = "The ID of the VPC"
-  value       = module.aws_iam_role.eks-iam-role.name
+  description = "Role arn for eks cluster"
+  value       = module.aws_iam_role.eks-iam-role.arn
 }
 
 output "workernodes_role" {
-  description = "The ID of the VPC"
-  value       = module.aws_iam_role.workernodes.name
+  description = "Role arn for worker nodes"
+  value       = module.aws_iam_role.workernodes.arn
 }
 
