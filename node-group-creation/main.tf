@@ -1,4 +1,6 @@
+variable "eks-cluster-name" {
 
+}
 data "aws_vpc" "yogi-vpc"{
 
 filter {
