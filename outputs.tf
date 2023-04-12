@@ -1,7 +1,7 @@
-output "eks_nodegroup_role" {
-  description = "The ID of the VPC"
-  value       = module.eks_nodegroup_role
-}
+//output "eks_nodegroup_role" {
+//  description = "The ID of the VPC"
+//  value       = module.eks_nodegroup_role
+//}
 
 output "eks_cluster_creation" {
   description = "Subnets created with CIDR blocks"
