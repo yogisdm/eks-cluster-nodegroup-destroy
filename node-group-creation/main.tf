@@ -17,15 +17,19 @@ data "aws_subnet_ids" "public-subnets" {
   }
 }
 
+data "aws_iam_role" "example" {
+  name = "eks-node-group-example"
+}
 
 data "aws_eks_cluster" "eks_creation" {
   name = var.eks-cluster-name
+  
 }
 
 resource "aws_eks_node_group" "worker-node-group" {
   cluster_name  = data.aws_eks_cluster.eks_creation.id
   node_group_name = "sandbox-workernodes"
-  node_role_arn  = aws_iam_role.workernodes.arn
+  node_role_arn  = eks-node-group-example.arn
   subnet_ids = "${element(data.aws_subnet.public-subnets.*.id, count.index)}"
   instance_types = ["t2.medium"]
  
@@ -41,5 +45,5 @@ resource "aws_eks_node_group" "worker-node-group" {
   ]
  }
 
-  ]
- }
+  
+ 
