@@ -8,7 +8,8 @@ filter {
 
 
 data "aws_subnet_ids" "public-subnets" {
-  vpc_id = data.aws_vpc.yogi-vpc.id
+  
+ vpc_id = data.aws_vpc.yogi-vpc.id
 
   filter {
     name   = "tag:Name"
@@ -21,15 +22,16 @@ data "aws_iam_role" "example" {
 }
 
 data "aws_eks_cluster" "eks_creation" {
-  name = var.eks-cluster-name1
-  
+  name = var.eks-cluster-name1 
 }
 
 resource "aws_eks_node_group" "worker-node-group" {
+count = "${length(var.public-subnet-cidr)}"
   cluster_name  = data.aws_eks_cluster.eks_creation.id
   node_group_name = "sandbox-workernodes"
   node_role_arn  = data.aws_iam_role.example.arn
   subnet_ids = "${element(data.aws_subnet_ids.public-subnets.*.id, count.index)}"
+  //subnet_ids =  "${data.aws}"
   instance_types = ["t2.medium"]
  
   scaling_config {
