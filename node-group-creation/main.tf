@@ -1,4 +1,3 @@
-
 data "aws_vpc" "yogi-vpc"{
 
 filter {
@@ -22,7 +21,7 @@ data "aws_iam_role" "example" {
 }
 
 data "aws_eks_cluster" "eks_creation" {
-  name = var.eks-cluster-name
+  name = var.eks-cluster-name1
   
 }
 
