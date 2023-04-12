@@ -12,6 +12,7 @@ filter {
 
 
 data "aws_subnet_ids" "public-subnets" {
+count = "${length(var.public-subnet-cidr)}"
   vpc_id = data.aws_vpc.yogi-vpc.id
 
   filter {
@@ -35,7 +36,8 @@ count = "${length(var.public-subnet-cidr)}"
  vpc_config {
   endpoint_private_access = false
   endpoint_public_access  = true
-  subnet_ids = "${element(data.aws_subnet_ids.public-subnets.*.id, count.index)}"
+  //subnet_ids = "${element(data.aws_subnet_ids.public-subnets.*.id, count.index)}"
+  subnet_ids =  data.aws_subnet_ids.public-subnets[*].id
  }
 
 // depends_on = [
