@@ -4,3 +4,7 @@ variable "public-subnet-cidr" {
  type = list
 }
 
+variable "eks-cluster-name" {
+description = "EKS cluster name"
+default = "sandbox-eks-cluster"
+}
